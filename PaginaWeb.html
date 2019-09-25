@@ -6,7 +6,7 @@
     </head>
     <body>
         <h1>¡Vamos a calcular!</h1>
-		<form action="/action_page.php">
+		
         <p>Añadir dos números enteros:</p>
         <input type="text" name="entero1" id="num1">
         <input type="text" name="lastname" id="num2">
@@ -23,22 +23,20 @@
         <p>Indicar la solución que crees correcta:</p>
         <input type="text" id="sol"> <br><br>
 
-        <button id="boton" type="button">Comprobar</button>
-        <input type="reset" value="Limpiar"> <br><br>
+        <button id="botonC" type="button" onclick="comprobar()">Comprobar</button>
+        <button id="botonReset" type="button" onclick="limpiar()">Limpiar</button>
+        <br><br>
         <div id="mensaje">¿¿??</div>
-        </form>
         
         <script>
-			var boton = document.getElementById("boton");
-
             // Definir la funcion del evento listener
-            var onButtonClick = function() {
+            function comprobar() {
             
 				var numero1 = new Number(document.getElementById("num1").value);
 				var numero2 = new Number(document.getElementById("num2").value);
 				var solucion = new Number(document.getElementById("sol").value);
 				var operacion = document.getElementById("op").value;
-            
+				
 				switch(operacion){
 					case "1":
 						var respuesta = (numero1+numero2);
@@ -61,9 +59,14 @@
 					document.getElementById("mensaje").style.color = "red";
                 }
             }
-			
-            // Adjuntar el evento listener al elemento
-            boton.addEventListener("click", onButtonClick);
+			function limpiar() {
+				document.getElementById("num1").value= "";
+				document.getElementById("num2").value= "";
+				document.getElementById("sol").value = "";
+				document.getElementById("mensaje").textContent= "¿¿??";
+				document.getElementById("mensaje").style.color = "black";
+				document.getElementById("op").value="1";
+			}
         </script>
     </body>
 </html>

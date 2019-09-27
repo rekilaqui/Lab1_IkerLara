@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Labo1_math_IkerLara</title>
+    </head>
+    <body>
+        <h1>¡Vamos a calcular!</h1>
+
+        <p>Añadir una expresion (p.e. 2+3-5):</p>
+        <input type="text" size="35" id="expresion">
+        <br>
+
+        <p>Indicar la solución que crees correcta:</p>
+        <input type="text" size="10" id="sol"> <br><br>
+
+        <button id="botonReset" type="button" onclick="limpiar()">Limpiar</button>
+        <br><br>
+        <div id="mensaje">¿¿??</div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/6.2.2/math.js"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+        <script>
+            $(document).ready(function()
+            {
+                $("#sol").keyup(function()
+                {
+                    var expr = new Number($("#expresion").val());
+                    var solucion = new Number($("#sol").val());
+                    var respuesta = math.format(math.evaluate($("#expresion").val()),14);
+                    if (respuesta == solucion) 
+                    {
+				        $("#mensaje").text("¡¡¡CORRECTO!!!");
+					    $("#mensaje").css("color","green");
+				    }
+				    else 
+				    {
+				        $("#mensaje").text("Inténtalo de nuevo...");
+					    $("#mensaje").css("color", "red");
+                    }
+                } );
+                $("#botonReset").click(function()
+                {
+                    $("#expresion").val("");
+                    $("#sol").val("");
+                    $("#mensaje").text("¿¿ ??");
+                    $("#mensaje").css("color", "black");
+                } );
+            } );
+        </script>
+    </body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Labo1_Calculadora_JQuery_IkerLara</title>
+    </head>
+    <body>
+        <h1>¡Vamos a calcular!</h1>
+		
+        <p>Añadir dos números enteros:</p>
+        <input type="text" name="entero1" id="num1">
+        <input type="text" name="lastname" id="num2">
+        <br>
+
+        <p>Seleccionar operador:</p>
+        <select id="op">
+            <option value="1">Suma (+)</option>
+            <option value="2">Resta (-)</option>
+            <option value="3">Multiplicación (*)</option>
+            <option value="4">División (/)</option>
+        </select>
+        
+        <p>Indicar la solución que crees correcta:</p>
+        <input type="text" id="sol"> <br><br>
+
+        <button id="botonC" type="button" onclick="comprobar()">Comprobar</button>
+        <button id="botonReset" type="button" onclick="limpiar()">Limpiar</button>
+        <br><br>
+        <div id="mensaje">¿¿??</div>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        
+        <script>
+            $(document).ready(function() 
+            {
+                $( "#botonC" ).click(function() 
+                {
+                    var numero1 = new Number($("#num1").val());
+                    var numero2 = new Number($("#num2").val());
+                    var solucion = new Number($("#sol").val());
+                    var operacion = $("#op").val();
+    				switch( operacion )
+                    {
+    					case "1":
+    						var respuesta = (numero1+numero2);
+    						break;
+    					case "2":
+    						var respuesta = (numero1-numero2);
+    						break;
+    					case "3":
+    						var respuesta = (numero1*numero2);
+    						break;
+    					default:
+    						var respuesta = (numero1/numero2);
+    						break;
+    				}
+    				if (respuesta == solucion) 
+                    {
+    				    $("#mensaje").text("¡¡¡¡¡CORRECTO!!!!!");
+    					$("#mensaje").css("color","green");
+    				}
+    				else  
+                    {
+    				    $("#mensaje").text("Inténtalo de nuevo...");
+    					$("#mensaje").css("color", "red");
+                    }
+                } );
+
+                $( "#botonReset" ).click(function()
+                {
+                    $("#num1").val("");
+                    $("#num2").val("")
+                    $("#sol").val("");
+                    $("#mensaje").text("¿¿ ??");
+                    $("#mensaje").css("color", "black");
+                    $("#op").val("1");
+                } );
+            } );  
+        </script>
+    </body>
+</html>
